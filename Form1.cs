@@ -19,7 +19,7 @@ namespace WindowsFormsApplication1
         public Form1()
         {
             InitializeComponent();
-            setBank();
+            setBanknote();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -43,27 +43,31 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                if (num%10 != 0)
+                if (num <= 0)
+                {
+                    MessageBox.Show("Please enter the POSITIVE number!");
+                }
+                else if (num%10 != 0)
                 {
                     MessageBox.Show("Please enter the round integer only!");
                 }
                 else
                 {
                     Console.WriteLine(num);
-                    setDefault();
+                    setDefaultOfAllValue();
                     if (checkMoney(num))
                     {
                         calculate(num);
                     }
                     else
                     {
-                        MessageBox.Show("Sorry! This machine hasn't enough money for withdraw. \nThanks!");
+                        MessageBox.Show("Sorry! This machine hasn't enough money for withdraw!");
                     }
                 }
             }
         }
 
-        private void setDefault()
+        private void setDefaultOfAllValue()
         {
             thousand = 0;
             hundred = 0;
@@ -85,7 +89,7 @@ namespace WindowsFormsApplication1
             return totalThousand * 1000 + totalFiveHundred * 500 + totalHundred * 100 + totalTwenty * 20 >= money;
         }
 
-        private void setBank()
+        private void setBanknote()
         {
             totalThousand = 2;
             totalFiveHundred = 4;
@@ -256,7 +260,7 @@ namespace WindowsFormsApplication1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            setDefault();
+            setDefaultOfAllValue();
             setValue();
             textBox1.Text = "";
         }
